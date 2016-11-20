@@ -1,0 +1,22 @@
+﻿<ContentDialog x:Name="loginDialog"
+    x:Class="eDay.LoginDialog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:eDay"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Title="EVERYDAY"
+    PrimaryButtonText="Вход"  
+    SecondaryButtonText="Отмена"
+    PrimaryButtonClick="ContentDialog_PrimaryButtonClick"
+    SecondaryButtonClick="ContentDialog_SecondaryButtonClick" 
+    IsDoubleTapEnabled="False" Height="Auto">
+
+    <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="383" Margin="0,0,0.083,0">
+        <TextBox x:Name="login" Header="Login"/>
+        <PasswordBox x:Name="password" Header="Password"/>
+        <HyperlinkButton Content="Регистрация" HorizontalAlignment="Left" Height="51" Width="362" RenderTransformOrigin="0.504,0.515" Click="HyperlinkButton_Click"/>
+        <!-- Тело содержимого -->
+    </StackPanel>
+</ContentDialog>

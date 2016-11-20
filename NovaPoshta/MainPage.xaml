@@ -5,9 +5,47 @@
     xmlns:local="using:NovaPoshta"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
-
+    xmlns:data="using:NovaPoshta.DataModel"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    >
+    <Page.Resources>
+        <DataTemplate x:Key="DatumTemplate">
+            <Grid Margin="10" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="1" Margin="0" BorderThickness="0" HorizontalAlignment="Stretch" d:LayoutOverrides="TopPosition, BottomPosition">
+                    <TextBlock Text="{Binding Number}" FontSize="16"/>
+                    <TextBlock Text="{Binding DateCreated}" FontSize="16"/>
+                    <TextBlock Text="{Binding RecipientFullName}"/>
+                    <TextBlock Text="{Binding Status}"/>
+                    <TextBlock Text="{Binding RecipientDateTime}"/>
+                    <TextBlock Text="{Binding PayerType}"/>
+                    <TextBlock Text="{Binding PaymentMethod}"/>
+                    <TextBlock Text="{Binding CargoDescriptionString}"/>
+                    <TextBlock Text="{Binding WarehouseRecipient}" TextWrapping="WrapWholeWords"/>
+                    <TextBlock Text="{Binding CitySender}"/>
+                    <TextBlock Text="{Binding SenderFullNameEW}" TextWrapping="WrapWholeWords"/>
+                    <TextBlock Text="{Binding PhoneSender}"/>
+                    <TextBlock Text="{Binding SenderAddress}" TextWrapping="WrapWholeWords"/>
+                    <TextBlock Text="{Binding CounterpartySenderDescription}"/>
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+    </Page.Resources>
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+        <StackPanel Height="600" >
+            <TextBlock x:Name="textBlockNumber" HorizontalAlignment="Left" Height="28" TextWrapping="Wrap" Text="Введите номер накладной" Width="340" Margin="10,0,0,0"/>
+            <TextBox x:Name="textBoxNumber" HorizontalAlignment="Left" Height="31" TextWrapping="Wrap" Text="" Width="340" Margin="10,0,0,0"/>
+            <TextBlock x:Name="textBlockPhone" HorizontalAlignment="Left" Height="28" TextWrapping="Wrap" Text="Введите номер телефона" VerticalAlignment="Top" Width="340" Margin="10,0,0,0"/>
+            <TextBox x:Name="textBoxPhone" HorizontalAlignment="Left" Height="31" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="340" Margin="10,0,0,0"/>
+            <CheckBox x:Name="checkBox" Content="Использовать мой номер" HorizontalAlignment="Left" Height="41" VerticalAlignment="Top" Width="217" IsChecked="True" Margin="10,0,0,0"/>
+            <Button x:Name="btnFind" Margin="10,0,0,0" BorderThickness="1" Content="Искать" Tapped="btnFind_Tapped" Width="340"/>
+            <ListView x:Name="listView" ItemTemplate="{StaticResource DatumTemplate}"
+                  d:DataContext="{d:DesignData /DataModel/Data.json, Type=data:NPTracking}"
+                  ItemsSource="{Binding data}" Margin="15,0,10,0" IsMultiSelectCheckBoxEnabled="False"/>
+        </StackPanel>
     </Grid>
 </Page>
