@@ -2,15 +2,12 @@
 using Newtonsoft.Json.Linq;
 using NovaPoshta.DataModel;
 using System;
-using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using Windows.Data.Json;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-
 // Документацию по шаблону элемента "Пустая страница" см. по адресу http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
 namespace NovaPoshta
@@ -56,7 +53,11 @@ namespace NovaPoshta
                 client.Dispose();
                 npt = JsonConvert.DeserializeObject<NPTracking>(response);
                 JObject wrng = (JObject)npt.warnings[0];
-                if(wrng.HasValues) throw new NotImplementedException(wrng.First.ToString());
+                if (wrng.HasValues)
+                {
+                    await NotifyAndSchedule.NotifyUser(wrng.First.ToString(), NotifyAndSchedule.NotifyType.ErrorMessage, StatusBorder, StatusBlock, 3);
+                }
+                //throw new NotImplementedException(wrng.First.ToString());
             }
             catch (Exception ex)
             {
@@ -64,8 +65,6 @@ namespace NovaPoshta
                 await d.ShowAsync();
             }
         }
-
-
         //@"{""modelName"": ""ScanSheet"",
         //   ""calledMethod"": ""getScanSheetList"",
         //   ""apiKey"": ""e146daad199cc7e79525b66c89661ec8""}";
@@ -74,8 +73,15 @@ namespace NovaPoshta
 
         private async void btnFind_Tapped(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
         {
+            await NotifyAndSchedule.NotifyUser("Поиск...", NotifyAndSchedule.NotifyType.StatusMessage, StatusBorder, StatusBlock);
             await Find(textBoxNumber.Text, textBoxPhone.Text);
             listView.DataContext = npt;
+            await NotifyAndSchedule.NotifyUser("", NotifyAndSchedule.NotifyType.StatusMessage, StatusBorder, StatusBlock);
+        }
+
+        private async void StatusBorder_Tapped(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
+        {
+            await NotifyAndSchedule.NotifyUser("", NotifyAndSchedule.NotifyType.StatusMessage, StatusBorder, StatusBlock);
         }
 
         //    public class User

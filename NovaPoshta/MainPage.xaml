@@ -47,5 +47,16 @@
                   d:DataContext="{d:DesignData /DataModel/Data.json, Type=data:NPTracking}"
                   ItemsSource="{Binding data}" Margin="15,0,10,0" IsMultiSelectCheckBoxEnabled="False"/>
         </StackPanel>
+        <Border x:Name="StatusBorder" Grid.Row="0" 
+                Visibility="Collapsed" 
+                Tapped="StatusBorder_Tapped"
+                Margin="0,0,0,0"
+                Height="50" VerticalAlignment="Bottom" Canvas.ZIndex="1">
+            <TextBlock x:Name="StatusBlock"
+                       Foreground="White"
+                       Margin="12, 10, 12, 10"
+                       TextWrapping="Wrap"
+                       FontSize="18.667"/>
+        </Border>
     </Grid>
 </Page>
