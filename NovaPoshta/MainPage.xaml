@@ -36,16 +36,17 @@
         </DataTemplate>
     </Page.Resources>
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <StackPanel Height="600" >
+        <StackPanel Margin="0,0,0,10" >
+            <Image Source="Assets/logo-hor-ua.png" Stretch="UniformToFill" Margin="10"/>
             <TextBlock x:Name="textBlockNumber" HorizontalAlignment="Left" Height="28" TextWrapping="Wrap" Text="Введите номер накладной" Width="340" Margin="10,0,0,0"/>
-            <TextBox x:Name="textBoxNumber" HorizontalAlignment="Left" Height="31" TextWrapping="Wrap" Text="" Width="340" Margin="10,0,0,0"/>
+            <TextBox x:Name="textBoxNumber" Height="31" TextWrapping="Wrap" Text="" Margin="10,0"/>
             <TextBlock x:Name="textBlockPhone" HorizontalAlignment="Left" Height="28" TextWrapping="Wrap" Text="Введите номер телефона" VerticalAlignment="Top" Width="340" Margin="10,0,0,0"/>
-            <TextBox x:Name="textBoxPhone" HorizontalAlignment="Left" Height="31" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="340" Margin="10,0,0,0"/>
-            <CheckBox x:Name="checkBox" Content="Использовать мой номер" HorizontalAlignment="Left" Height="41" VerticalAlignment="Top" Width="217" IsChecked="True" Margin="10,0,0,0"/>
-            <Button x:Name="btnFind" Margin="10,0,0,0" BorderThickness="1" Content="Искать" Tapped="btnFind_Tapped" Width="340"/>
+            <TextBox x:Name="textBoxPhone" Height="31" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Margin="10,0" InputScope="TelephoneNumber" IsEnabled="{Binding IsChecked, ElementName=checkBox}"/>
+            <CheckBox x:Name="checkBox" Content="Ввести другой номер" HorizontalAlignment="Stretch" Height="29" VerticalAlignment="Top" Margin="10,0"/>
+            <Button x:Name="btnFind" Margin="10,0" BorderThickness="1" Content="Искать" Tapped="btnFind_Tapped" HorizontalAlignment="Stretch"/>
             <ListView x:Name="listView" ItemTemplate="{StaticResource DatumTemplate}"
                   d:DataContext="{d:DesignData /DataModel/Data.json, Type=data:NPTracking}"
-                  ItemsSource="{Binding data}" Margin="15,0,10,0" IsMultiSelectCheckBoxEnabled="False"/>
+                  ItemsSource="{Binding data}" Margin="15,0,10,0" IsMultiSelectCheckBoxEnabled="False" Height="365"/>
         </StackPanel>
         <Border x:Name="StatusBorder" Grid.Row="0" 
                 Visibility="Collapsed" 

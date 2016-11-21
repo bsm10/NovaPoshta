@@ -5,9 +5,14 @@ using System;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.ApplicationModel.Chat;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.Networking.NetworkOperators;
+using System.Collections.Generic;
+
+
 // Документацию по шаблону элемента "Пустая страница" см. по адресу http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
 namespace NovaPoshta
@@ -21,21 +26,52 @@ namespace NovaPoshta
         //"https://api.novaposhta.ua/v2.0/json/";
         private static string response;
         NPTracking npt;
-
+        IReadOnlyList<string> deviceAccountId = null;
+        string mobileNumber = "";
         public MainPage()
         {
             InitializeComponent();
             Loaded += OnLoaded;
+            
         }
 
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
+            GetCurrentDeviceInfo();
+            textBoxPhone.Text = mobileNumber;
+            if (mobileNumber.Length > 12) textBoxPhone.Text = mobileNumber.Substring(0, 13);
+
 #if DEBUG
             textBoxNumber.Text = "59000218034909";
-            textBoxPhone.Text = "380662279723";
 #endif    
-
         }
+
+        async void GetCurrentDeviceInfo()
+        {
+            try
+            {
+                deviceAccountId = MobileBroadbandAccount.AvailableNetworkAccountIds; 
+                string accountId = null;
+                if (deviceAccountId.Count != 0)
+                {
+                    accountId = deviceAccountId[0];
+                }
+                var mobileBroadbandAccount = MobileBroadbandAccount.CreateFromNetworkAccountId(accountId);
+                var deviceInformation = mobileBroadbandAccount.CurrentDeviceInformation;
+                if (deviceInformation != null)
+                {
+                    if (deviceInformation.TelephoneNumbers.Count > 0)
+                    {
+                        mobileNumber = deviceInformation.TelephoneNumbers[0];
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                await NotifyAndSchedule.NotifyUser("Error:" + ex.Message, NotifyAndSchedule.NotifyType.ErrorMessage,StatusBorder,StatusBlock);
+            }
+        }
+
         private async Task Find(string number, string phone)
         {
             string postData =
