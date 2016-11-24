@@ -1,15 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Package 
-  xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
-  xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" 
-  xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" 
-  xmlns:r="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
-  IgnorableNamespaces="uap mp r">
-  <Identity Name="a10d200d-3f2e-4b9a-aed3-ef9335694ba9" Publisher="CN=Boris" Version="1.0.0.0" />
+<Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
+         xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" 
+         xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" 
+         IgnorableNamespaces="uap mp">
+  
+         <!--xmlns:r="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"-->
+         
+  <Identity Name="26268BorysMalyi.35948CC68B474" Publisher="CN=4CD9B253-A95A-4099-A17A-AF572E66A50C" Version="1.1.5.0" />
   <mp:PhoneIdentity PhoneProductId="a10d200d-3f2e-4b9a-aed3-ef9335694ba9" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
-    <DisplayName>NovaPoshta</DisplayName>
-    <PublisherDisplayName>Boris</PublisherDisplayName>
+    <DisplayName>Нова пошта</DisplayName>
+    <PublisherDisplayName>BorysMalyi</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
   <Dependencies>
@@ -20,7 +21,7 @@
   </Resources>
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="NovaPoshta.App">
-      <uap:VisualElements DisplayName="NovaPoshta" Square150x150Logo="Assets\Square150x150Logo.png" Square44x44Logo="Assets\Square44x44Logo.png" Description="NovaPoshta" BackgroundColor="transparent">
+      <uap:VisualElements DisplayName="Нова пошта" Square150x150Logo="Assets\Square150x150Logo.png" Square44x44Logo="Assets\Square44x44Logo.png" Description="NovaPoshta" BackgroundColor="transparent">
         <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png">
         </uap:DefaultTile>
         <uap:SplashScreen Image="Assets\SplashScreen.png" />
@@ -29,8 +30,8 @@
   </Applications>
   <Capabilities>
     <Capability Name="internetClient" />
-    <r:Capability Name="cellularDeviceIdentity"/>
-    <r:Capability Name="cellularDeviceControl"/>
-    <r:Capability Name="cellularMessaging" />
+    <!--<r:Capability Name="cellularDeviceIdentity" />
+    <r:Capability Name="cellularDeviceControl" />
+    <r:Capability Name="cellularMessaging" />-->
   </Capabilities>
 </Package>

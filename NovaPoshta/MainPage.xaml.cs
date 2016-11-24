@@ -37,7 +37,7 @@ namespace NovaPoshta
 
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
-            GetCurrentDeviceInfo();
+            //GetCurrentDeviceInfo();
             textBoxPhone.Text = mobileNumber;
             if (mobileNumber.Length > 12) textBoxPhone.Text = mobileNumber.Substring(0, 13);
 
@@ -46,31 +46,31 @@ namespace NovaPoshta
 #endif    
         }
 
-        async void GetCurrentDeviceInfo()
-        {
-            try
-            {
-                deviceAccountId = MobileBroadbandAccount.AvailableNetworkAccountIds; 
-                string accountId = null;
-                if (deviceAccountId.Count != 0)
-                {
-                    accountId = deviceAccountId[0];
-                }
-                var mobileBroadbandAccount = MobileBroadbandAccount.CreateFromNetworkAccountId(accountId);
-                var deviceInformation = mobileBroadbandAccount.CurrentDeviceInformation;
-                if (deviceInformation != null)
-                {
-                    if (deviceInformation.TelephoneNumbers.Count > 0)
-                    {
-                        mobileNumber = deviceInformation.TelephoneNumbers[0];
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                await NotifyAndSchedule.NotifyUser("Error:" + ex.Message, NotifyAndSchedule.NotifyType.ErrorMessage,StatusBorder,StatusBlock);
-            }
-        }
+        //async void GetCurrentDeviceInfo()
+        //{
+        //    try
+        //    {
+        //        deviceAccountId = MobileBroadbandAccount.AvailableNetworkAccountIds; 
+        //        string accountId = null;
+        //        if (deviceAccountId.Count != 0)
+        //        {
+        //            accountId = deviceAccountId[0];
+        //        }
+        //        var mobileBroadbandAccount = MobileBroadbandAccount.CreateFromNetworkAccountId(accountId);
+        //        var deviceInformation = mobileBroadbandAccount.CurrentDeviceInformation;
+        //        if (deviceInformation != null)
+        //        {
+        //            if (deviceInformation.TelephoneNumbers.Count > 0)
+        //            {
+        //                mobileNumber = deviceInformation.TelephoneNumbers[0];
+        //            }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        await NotifyAndSchedule.NotifyUser("Error:" + ex.Message, NotifyAndSchedule.NotifyType.ErrorMessage,StatusBorder,StatusBlock);
+        //    }
+        //}
 
         private async Task Find(string number, string phone)
         {

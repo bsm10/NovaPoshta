@@ -11,9 +11,6 @@ namespace NovaPoshta
     public static class NotifyAndSchedule
     {
         #region Notifications
-        static DispatcherTimer dispatcherTimer;
-        static int timesTicked = 0;
-        static int timesToTick = 10;
         static Border statusBorder;
         public static async Task NotifyUser(string strMessage, NotifyType type, Border StatusBorder, TextBlock StatusBlock, int Seconds = 0)
         {
@@ -44,27 +41,10 @@ namespace NovaPoshta
                 {
                     await Task.Delay(new TimeSpan(0, 0, Seconds));
                     StatusBorder.Visibility = Visibility.Collapsed;
-                    //dispatcherTimer = new DispatcherTimer();
-                    //dispatcherTimer.Tick += dispatcherTimer_Tick;
-                    //dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
-                    //timesToTick = Seconds;
-                    //dispatcherTimer.Start();
-
                 }
 
             }
         }
-        //static void dispatcherTimer_Tick(object sender, object e)
-        //{
-        //    if (timesTicked == timesToTick)
-        //    {
-        //        dispatcherTimer.Stop();
-        //        statusBorder.Visibility = Visibility.Collapsed;
-        //        timesTicked = 0;
-        //        return;
-        //    }
-        //    timesTicked++;
-        //}
         public enum NotifyType
         {
             StatusMessage,

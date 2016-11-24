@@ -7,7 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:data="using:NovaPoshta.DataModel"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Height="637"
     >
     <Page.Resources>
         <DataTemplate x:Key="DatumTemplate">
@@ -42,11 +42,15 @@
             <TextBox x:Name="textBoxNumber" Height="31" TextWrapping="Wrap" Text="" Margin="10,0"/>
             <TextBlock x:Name="textBlockPhone" HorizontalAlignment="Left" Height="28" TextWrapping="Wrap" Text="Введите номер телефона" VerticalAlignment="Top" Width="340" Margin="10,0,0,0"/>
             <TextBox x:Name="textBoxPhone" Height="31" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Margin="10,0" InputScope="TelephoneNumber" IsEnabled="{Binding IsChecked, ElementName=checkBox}"/>
-            <CheckBox x:Name="checkBox" Content="Ввести другой номер" HorizontalAlignment="Stretch" Height="29" VerticalAlignment="Top" Margin="10,0"/>
             <Button x:Name="btnFind" Margin="10,0" BorderThickness="1" Content="Искать" Tapped="btnFind_Tapped" HorizontalAlignment="Stretch"/>
             <ListView x:Name="listView" ItemTemplate="{StaticResource DatumTemplate}"
                   d:DataContext="{d:DesignData /DataModel/Data.json, Type=data:NPTracking}"
-                  ItemsSource="{Binding data}" Margin="15,0,10,0" IsMultiSelectCheckBoxEnabled="False" Height="365"/>
+                  ItemsSource="{Binding data}" Margin="15,0,10,0" IsMultiSelectCheckBoxEnabled="False" Height="350"/>
+            <HyperlinkButton Content="Написать отзыв" 
+                             HorizontalAlignment="Center" 
+                             Height="35" Margin="0" 
+                             Width="266" 
+                             NavigateUri="mailto:bmalyy@gmail.com"/>
         </StackPanel>
         <Border x:Name="StatusBorder" Grid.Row="0" 
                 Visibility="Collapsed" 
