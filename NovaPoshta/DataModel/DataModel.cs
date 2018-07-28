@@ -85,7 +85,7 @@ namespace NovaPoshta.DataModel
         public List<object> info { get; set; }
         public List<object> messageCodes { get; set; }
         public List<object> errorCodes { get; set; }
-        public List<object> warningCodes { get; set; }
+        public IList<string> warningCodes { get; set; }
         public List<object> infoCodes { get; set; }
         public override string ToString()
         {
